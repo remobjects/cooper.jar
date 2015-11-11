@@ -139,7 +139,7 @@ end;
 extension method sequence of T.Count<T>: Integer; 
 begin
   if self is List then
-    exit List(self).Count();
+    exit List(self).size();
   result := 0;
   for each el in self do
     inc(result);
