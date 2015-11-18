@@ -33,6 +33,7 @@ type
     property AsyncState: Object read fAsyncState;
     property IsFaulted: Boolean read fException <> nil;
     property IsCompleted: Boolean read fState = TaskState.Done; 
+    method &Await(aCompletion: IAwaitCompletion): Boolean; // true = yield; false = long done
 
     {$HIDE W38}
     method Wait; reintroduce;
@@ -40,17 +41,20 @@ type
     method Wait(aTimeoutMSec: Integer): Boolean; 
 
     method Start(aScheduler: Executor := nil);
+
+    class constructor;
+    class property ThreadSyncHelper: IThreadSyncHelper;
   end;
 
   Task1<T> = public class(Task)
   assembly
     fResult: T;
-    method get_Result: T;
+    method getResult: T;
     constructor(aDelegate: Object; aState: Object); empty;
   public
     constructor(aIn: Callable<T>; aState: Object := nil);
     method run; override;
-    property &Result: T read get_Result;
+    property &Result: T read getResult;
   end;
   
   TaskCompletionSource<T> = public class
@@ -92,13 +96,6 @@ type
     constructor;
     method SyncBack(aContext: Object; aAction: Runnable);
     method GetThreadContext: Object;
-  end;
-
-  AwaitHelper = public static class
-  public
-    class constructor;
-    class property ThreadSyncHelper: IThreadSyncHelper;
-    class method AwaitTask(t: Task; aCompletion: IAwaitCompletion): Boolean; // true = yield; false = long done
   end;
 
   TCTask<T> = class(Task1<T>)
@@ -241,7 +238,7 @@ begin
   result.Start;
 end;
 
-method Task1<T>.get_Result: T;
+method Task1<T>.getResult: T;
 begin
   Wait();
   if fException <> nil then 
@@ -296,14 +293,14 @@ begin
   fTask.Done(nil);
 end;
 
-class method AwaitHelper.AwaitTask(t: Task; aCompletion: IAwaitCompletion): Boolean;
+method Task.Await(aCompletion: IAwaitCompletion): Boolean;
 begin
-  if t.IsCompleted then exit false;
+  if IsCompleted then exit false;
   var tc := ThreadSyncHelper.GetThreadContext();
   if tc = nil then begin
-    t.ContinueWith(a -> aCompletion.moveNext(a), nil);
+    ContinueWith(a -> aCompletion.moveNext(a), nil);
   end else begin
-    t.ContinueWith(a -> begin 
+    ContinueWith(a -> begin 
       ThreadSyncHelper.SyncBack(tc, -> aCompletion(a));
     end);
   end;
@@ -311,13 +308,13 @@ begin
   exit true;
 end;
 
-class constructor AwaitHelper;
+class constructor Task;
 begin
   try
     &Class.forName("android.app.Activity");
-    AwaitHelper.ThreadSyncHelper := new AndroidThreadSyncHelper;
+    ThreadSyncHelper := new AndroidThreadSyncHelper;
   except
-    AwaitHelper.ThreadSyncHelper := new AWTThreadSyncHelper;
+    ThreadSyncHelper := new AWTThreadSyncHelper;
   end;
 end;
 
