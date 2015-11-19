@@ -36,13 +36,14 @@ type
     method &Await(aCompletion: IAwaitCompletion): Boolean; // true = yield; false = long done
 
     {$HIDE W38}
-    method Wait; reintroduce;
+    method Wait; reintroduce;virtual;
     {$SHOW W38}
-    method Wait(aTimeoutMSec: Integer): Boolean; 
+    method Wait(aTimeoutMSec: Integer): Boolean; virtual;
 
-    method Start(aScheduler: Executor := nil);
+    method Start(aScheduler: Executor := nil); virtual;
 
     class constructor;
+    class property Threadpool: ExecutorService; readonly;
     class property ThreadSyncHelper: IThreadSyncHelper;
   end;
 
@@ -98,10 +99,16 @@ type
     method GetThreadContext: Object;
   end;
 
-  TCTask<T> = class(Task1<T>)
+  TaskCompletionSourceTask<T> = class(Task1<T>)
   assembly
   public
     method run; override; empty;
+  end;
+
+  ThreadpoolFactory nested in Task = class(ThreadFactory)
+  private
+  public
+    method newThread(arg: Runnable): Thread;
   end;
 
 
@@ -223,7 +230,7 @@ begin
     if fState <> TaskState.Created then raise new IllegalStateException('Task already started/queued/done');
     fState := TaskState.Queued;
   end;
-  coalesce(aScheduler, Executor(com.remobjects.elements.system.FutureHelper.Threadpool)).execute(self);
+  coalesce(aScheduler, Executor(Threadpool)).execute(self);
 end;
 
 class method Task.Run(aIn: Runnable): Task;
@@ -269,7 +276,7 @@ end;
 
 constructor TaskCompletionSource<T>(aState: Object);
 begin
-  fTask := new TCTask<T>(Object(nil), aState);
+  fTask := new TaskCompletionSourceTask<T>(Object(nil), aState);
   fTask.fState := TaskState.Started; 
 end;
 
@@ -310,6 +317,7 @@ end;
 
 class constructor Task;
 begin
+  Threadpool := Executors.newCachedThreadPool(new ThreadpoolFactory);
   try
     &Class.forName("android.app.Activity");
     ThreadSyncHelper := new AndroidThreadSyncHelper;
@@ -356,4 +364,9 @@ begin
 end;
 
 
+method Task.ThreadpoolFactory.newThread(arg: Runnable): Thread;
+begin
+  result := new Thread(arg);
+  result.Daemon := true;
+end;
 end.

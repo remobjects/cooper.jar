@@ -11,85 +11,98 @@ type
   // Action = java.lang.Runnable;
   // Func<T> = java.util.concurrent.Callable<T>
   FutureHelper = public static class
-  private
-
   public 
-    class method IsDone<T>(aFuture: Callable<T>): Boolean; 
-    class method Execute<T>(aFuture: Callable<T>): Callable<T>; 
-    class method ExecuteAsync<T>(aMethod: Callable<T>; aWantResult: Boolean): Callable<T>; 
-    class method IsDone(aFuture: Runnable): Boolean; 
-    class method Execute(aMethod: Runnable): Runnable; 
-    class method ExecuteAsync(aMethod:  Runnable; aWantResult: Boolean): Runnable; 
-
-    class property Threadpool: ExecutorService; readonly;
-    class constructor;
+    class method IsDone<T>(aFuture: Task1<T>): Boolean; 
+    class method Execute<T>(aFuture: Callable<T>): Task1<T>; 
+    class method ExecuteAsync<T>(aMethod: Callable<T>; aWantResult: Boolean): Task1<T>; 
+    class method IsDone(aFuture: Task): Boolean; 
+    class method Execute(aMethod: Runnable): Task; 
+    class method ExecuteAsync(aMethod:  Runnable; aWantResult: Boolean): Task; 
   end;
 
-  ThreadpoolFactory nested in FutureHelper = class(ThreadFactory)
+  NonThreadedTask = public class(Task)
   private
   public
-    method newThread(arg: Runnable): Thread;
+    method Start(aScheduler: Executor); override; 
+    method Wait(aTimeoutMSec: Integer): Boolean; override;
+    method Wait; override;
   end;
 
-
-  CallableFutureTask<T> = public class(FutureTask<T>, Callable<T>)
+  NonThreadedTask1<T> = public class(Task1<T>)
   private
   public
-    method call: T;
   end;
 
 implementation
 
-class method FutureHelper.IsDone<T>(aFuture: Callable<T>): Boolean;
+class method FutureHelper.IsDone<T>(aFuture: Task1<T>): Boolean;
 begin
-  exit FutureTask<T>(aFuture).isDone;
+  exit aFuture.IsCompleted;
 end;
 
-class method FutureHelper.Execute<T>(aFuture: Callable<T>): Callable<T>;
+class method FutureHelper.Execute<T>(aFuture: Callable<T>): Task1<T>;
 begin
-  exit new CallableFutureTask<T>(aFuture);
+  result := new NonThreadedTask1<T>(aFuture);
+  result.Start;
 end;
 
-class method FutureHelper.ExecuteAsync<T>(aMethod: Callable<T>; aWantResult: Boolean): Callable<T>;
+class method FutureHelper.ExecuteAsync<T>(aMethod: Callable<T>; aWantResult: Boolean): Task1<T>;
 begin
-  var lTask := new CallableFutureTask<T>(aMethod);
-  Threadpool.execute(lTask);
-  exit lTask;
+  result := new Task1<T>(aMethod);
+  result.Start;
 end;
 
-class method FutureHelper.IsDone(aFuture: Runnable): Boolean;
+class method FutureHelper.IsDone(aFuture: Task): Boolean;
 begin
-  exit FutureTask(aFuture).isDone;
+  exit aFuture.IsCompleted;
 end;
 
-class method FutureHelper.Execute(aMethod: Runnable): Runnable;
+class method FutureHelper.Execute(aMethod: Runnable): Task;
 begin
-  exit new FutureTask(aMethod, nil);
+  result := new NonThreadedTask(aMethod);
+  result.Start;
 end;
 
-class method FutureHelper.ExecuteAsync(aMethod: Runnable; aWantResult: Boolean): Runnable;
+class method FutureHelper.ExecuteAsync(aMethod: Runnable; aWantResult: Boolean): Task;
 begin
-  var lTask := new FutureTask(aMethod, nil);
-  Threadpool.execute(lTask);
-  exit lTask; 
+  result := new Task(aMethod);
+  result.Start;
 end;
 
-class constructor FutureHelper;
+
+
+method NonThreadedTask.Wait(aTimeoutMSec: Integer): Boolean;
 begin
-  Threadpool := Executors.newCachedThreadPool(new ThreadpoolFactory);
+  var lRun := false;
+  locking self do begin
+    if fState = TaskState.Queued then begin
+      fState := TaskState.Started;
+      lRun := true;
+    end;
+  end;
+  if lRun then run;
+  exit inherited;
 end;
 
-method CallableFutureTask<T>.call: T;
+method NonThreadedTask.Wait;
 begin
-  self.run();
-  exit self.get();
+  var lRun := false;
+  locking self do begin
+    if fState = TaskState.Queued then begin
+      fState := TaskState.Started;
+      lRun := true;
+    end;
+  end;
+  if lRun then run;
+  inherited;
 end;
 
-method FutureHelper.ThreadpoolFactory.newThread(arg: Runnable): Thread;
+method NonThreadedTask.Start(aScheduler: Executor);
 begin
-  result := new Thread(arg);
-  result.Daemon := true;
+  locking fLock do begin
+    if fState <> TaskState.Created then raise new IllegalStateException('Task already started/queued/done');
+    fState := TaskState.Queued;
+  end;
 end;
-
 
 end.

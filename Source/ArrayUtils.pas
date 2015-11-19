@@ -99,7 +99,7 @@ end;
 class method ArrayUtils.asIterableUnsigned(x: array of Int16): sequence of com.remObjects.elements.system.UnsignedShort;
 begin
   for i: Integer := 0 to length(x) -1 do
-    yield new com.remobjects.elements.system.Unsignedshort(x[i]);
+    yield new com.remobjects.elements.system.UnsignedShort(x[i]);
 end;
 
     
