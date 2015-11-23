@@ -221,6 +221,7 @@ begin
       if lMS <= 0 then exit false;
       fLock.wait(lMS);
     end;
+    exit true;
   end;
 end;
 
