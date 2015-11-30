@@ -54,6 +54,8 @@ type
     constructor(aDelegate: Object; aState: Object); empty;
   public
     constructor(aIn: Callable<T>; aState: Object := nil);
+    method ContinueWith(aAction: com.remobjects.elements.system.Action1<Task1<T>>; aState: Object := nil): Task;
+    method ContinueWith<TR>(aAction: com.remobjects.elements.system.Func2<Task1<T>, TR>; aState: Object := nil): Task1<TR>;
     method run; override;
     property &Result: T read getResult;
   end;
@@ -271,6 +273,23 @@ constructor Task1<T>(aIn: Callable<T>; aState: Object);
 begin
   if aIn = nil then raise new IllegalArgumentException('aIn');
   inherited constructor(aIn, aState);
+end;
+
+method Task1<T>.ContinueWith(aAction: Action1<Task1<T>>; aState: Object): Task;
+begin
+  result := new Task(-> aAction(self), aState);
+  result.fState := TaskState.Queued;
+
+  AddOrRunContinueWith(result);
+end;
+
+method Task1<T>.ContinueWith<TR>(aAction: Func2<Task1<T>,TR>; aState: Object): Task1<TR>;
+begin
+  var r: Callable<T> := -> aAction(self);
+  result := new Task1(r, aState);
+  result.fState := TaskState.Queued;
+
+  AddOrRunContinueWith(result);
 end;
 
 
