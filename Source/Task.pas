@@ -16,11 +16,11 @@ type
     fDelegate: Object; // callable<T>; runnable
     fDoneHandlers: Object; // nil, arraylist or task
     fLock: Object := new Object;
-    method run; virtual;
     method Done(ex: Throwable); 
     method AddOrRunContinueWith(aTask: Task);
     constructor(aDelegate: Object; aState: Object);
   public
+    method run; virtual;
     constructor(aIn: Runnable; aState: Object := nil);
 
     method ContinueWith(aAction: com.remobjects.elements.system.Action1<Task>; aState: Object := nil): Task;
@@ -367,7 +367,7 @@ end;
 constructor AndroidThreadSyncHelper;
 begin
   var lType := typeOf(AndroidThreadSyncHelper).ClassLoader.loadClass('android.os.Looper');
-  fMyLooper := lType.getMethod('getMyLooper');
+  fMyLooper := lType.getMethod('myLooper');
   var lType2 := typeOf(AndroidThreadSyncHelper).ClassLoader.loadClass('android.os.Handler');
   fHandlerCtor := lType2.getConstructor(lType);
   fHandlerPost := lType2.getMethod('post', typeOf(Runnable));
