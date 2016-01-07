@@ -5,7 +5,7 @@
         <OutputType>Library</OutputType>
         <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
         <AllowLegacyCreate>False</AllowLegacyCreate>
-        <Name>com.remobjects.elements.rtl</Name>
+        <Name>cooper</Name>
         <RootNamespace>com.remobjects.elements.system</RootNamespace>
         <ProjectGuid>{82e8a52b-61cc-4df3-bed2-647bb69afe9b}</ProjectGuid>
     </PropertyGroup>
