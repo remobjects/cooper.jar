@@ -11,6 +11,11 @@ type
     Value: T; // KEEP as variable
   end;
 
+  ObsoleteMarker = public interface(java.lang.annotation.Annotation)
+    method message: String;
+    method fatal: Boolean;
+  end;
+
   OutParameter = public interface(java.lang.annotation.Annotation)
   end;
 
