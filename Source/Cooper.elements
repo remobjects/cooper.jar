@@ -57,9 +57,7 @@
         <Compile Include="DynamicHelpers.pas"/>
         <Compile Include="Interfaces.pas"/>
     </ItemGroup>
-    <ItemGroup>
-        <Folder Include="Properties\"/>
-    </ItemGroup>
+    <ItemGroup/>
     <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Cooper.targets"/>
     <PropertyGroup>
         <PreBuildEvent/>
