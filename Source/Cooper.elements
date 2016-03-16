@@ -8,6 +8,7 @@
         <Name>cooper</Name>
         <RootNamespace>com.remobjects.elements.system</RootNamespace>
         <ProjectGuid>{82e8a52b-61cc-4df3-bed2-647bb69afe9b}</ProjectGuid>
+        <AssemblyName>cooper</AssemblyName>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <Optimize>false</Optimize>
@@ -43,7 +44,7 @@
         <EnableUnmanagedDebugging>False</EnableUnmanagedDebugging>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="rt.jar"/>
+        <Reference Include="rt"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="ArrayUtils.pas"/>
@@ -59,7 +60,7 @@
     <ItemGroup>
         <Folder Include="Properties\"/>
     </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)/RemObjects Software/Oxygene/RemObjects.Oxygene.Cooper.targets"/>
+    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Cooper.targets"/>
     <PropertyGroup>
         <PreBuildEvent/>
         <PreBuildEvent/>
