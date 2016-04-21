@@ -47,6 +47,7 @@
         <Reference Include="rt"/>
     </ItemGroup>
     <ItemGroup>
+	    <Compile Include="Globals.pas"/>
         <Compile Include="ArrayUtils.pas"/>
         <Compile Include="FutureHelper.pas"/>
         <Compile Include="InlineDelegates.pas"/>
