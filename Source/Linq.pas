@@ -37,7 +37,8 @@ extension method sequence of T.Distinct<T>(aComparator: Comparer<T> := nil): seq
 extension method sequence of T.Intersect<T>(aSecond: sequence of T; aComparator: Comparer<T> := nil): sequence of T;  iterator;
 extension method sequence of T.Except<T>(aSecond: sequence of T; aComparator: Comparer<T> := nil): sequence of T;  iterator;
 
-extension method List<T>.Contains<T>(element: T; aComparator: Comparer<T>): Boolean;
+extension method List<T>.Contains<T>(aElement: T; aComparator: Comparer<T>): Boolean;
+extension method sequence of T.Contains<T>(aElement: T): Boolean;
 
 type
   Helpers = public static class
@@ -228,16 +229,31 @@ begin
       yield i;
 end;
 
-extension method List<T>.Contains<T>(element: T; aComparator: Comparer<T>): Boolean;
+extension method List<T>.Contains<T>(aElement: T; aComparator: Comparer<T>): Boolean;
 begin
   if aComparator = nil then
-    exit self.contains(element);
+    exit self.contains(aElement);
   for j: Integer := 0 to Count -1 do begin
-    if 0 = aComparator(self[j], element) then
+    if 0 = aComparator(self[j], aElement) then
       exit true;
   end;
   exit false;
 end;
+
+extension method sequence of T.Contains<T>(aElement: T): Boolean;
+begin
+  if self is java.util.ArrayList<T> then
+    exit (self as java.util.ArrayList<T>).contains(aElement);
+  for each i in self do begin
+    if (i = nil) then begin
+      if (aElement = nil) then exit true;
+    end
+    else begin
+      if i.equals(aElement) then exit true;
+    end;
+  end;
+end;
+
 class method Helpers.ForHelper<T>(aStart: Integer; aEnd: Integer; aStep: Integer; aBackward: Boolean; aMethod: ForSelector<T>): sequence of T;
 begin
   if aBackward then

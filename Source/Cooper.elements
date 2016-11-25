@@ -43,7 +43,7 @@
         <EnableUnmanagedDebugging>False</EnableUnmanagedDebugging>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="rt.jar"/>
+        <Reference Include="rt"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="ArrayUtils.pas"/>
@@ -59,7 +59,7 @@
     <ItemGroup>
         <Folder Include="Properties\"/>
     </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)/RemObjects Software/Oxygene/RemObjects.Oxygene.Cooper.targets"/>
+    <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Cooper.targets"/>
     <PropertyGroup>
         <PreBuildEvent/>
         <PreBuildEvent/>
