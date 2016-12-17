@@ -53,6 +53,7 @@
         <Compile Include="InlineDelegates.pas"/>
         <Compile Include="Linq.pas"/>
         <Compile Include="Structures.pas"/>
+        <Compile Include="Task.pas"/>
         <Compile Include="Tuples.pas"/>
         <Compile Include="UnsignedTypes.pas"/>
         <Compile Include="DynamicHelpers.pas"/>
