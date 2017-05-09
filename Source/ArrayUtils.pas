@@ -6,7 +6,7 @@ type
   ArrayUtils = public static class
   public
     class method asIterable(x: array of Boolean): sequence of nullable Boolean;iterator;
-    class method asIterable(x: array of SByte): sequence of nullable Byte;iterator;
+    class method asIterable(x: array of SByte): sequence of nullable SByte;iterator;
     class method asIterable(x: array of Char): sequence of nullable Char;iterator;
     class method asIterable(x: array of Double): sequence of nullable Double;iterator;
     class method asIterable(x: array of Single): sequence of nullable Single;iterator;
@@ -24,55 +24,55 @@ type
 
 implementation
 
-class method ArrayUtils.asIterable(x: array of Boolean): Iterable<nullable Boolean>;
+class method ArrayUtils.asIterable(x: array of Boolean): sequence of nullable Boolean;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];
 end;
 
-class method ArrayUtils.asIterable(x: array of SByte): Iterable<nullable SByte>;
+class method ArrayUtils.asIterable(x: array of SByte): sequence of nullable SByte;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];
 end;
 
-class method ArrayUtils.asIterable(x: array of Char): Iterable<nullable Character>;
+class method ArrayUtils.asIterable(x: array of Char): sequence of nullable Char;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];
 end;
 
-class method ArrayUtils.asIterable(x: array of Double): Iterable<nullable Double>;
+class method ArrayUtils.asIterable(x: array of Double): sequence of nullable Double;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];
 end;
 
-class method ArrayUtils.asIterable(x: array of Single): Iterable<nullable Float>;
+class method ArrayUtils.asIterable(x: array of Single): sequence of nullable Single;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];
 end;
 
-class method ArrayUtils.asIterable(x: array of Integer): Iterable<nullable Integer>;
+class method ArrayUtils.asIterable(x: array of Integer): sequence of nullable Integer;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];
 end;
 
-class method ArrayUtils.asIterable(x: array of Int64): Iterable<nullable Long>;
+class method ArrayUtils.asIterable(x: array of Int64): sequence of nullable Int64;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];
 end;
 
-class method ArrayUtils.asIterable(x: array of Int16): Iterable<nullable Short>;
+class method ArrayUtils.asIterable(x: array of Int16): sequence of nullable Int16;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];
 end;
 
-class method ArrayUtils.asIterable<T>(x: array of T): Iterable<T>;
+class method ArrayUtils.asIterable<T>(x: array of T): sequence of T;
 begin
   for i: Integer := 0 to length(x) -1 do
     yield x[i];

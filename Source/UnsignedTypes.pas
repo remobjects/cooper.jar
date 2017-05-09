@@ -430,7 +430,7 @@ begin
   exit fValue;
 end;
 
-class method UnsignedShort.valueOf(aValue: SmallInt): UnsignedShort;
+class method UnsignedShort.valueOf(aValue: Int16): UnsignedShort;
 begin
   exit new UnsignedShort(aValue);
 end;
@@ -585,7 +585,7 @@ begin
   exit fValue;
 end;
 
-class method UnsignedInteger.valueOf(aValue: Integer): UnsignedInteger;
+class method UnsignedInteger.valueOf(aValue: Int32): UnsignedInteger;
 begin
   exit new UnsignedInteger(aValue);
 end;

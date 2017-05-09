@@ -54,8 +54,8 @@ type
     constructor(aDelegate: Object; aState: Object); empty;
   public
     constructor(aIn: Callable<T>; aState: Object := nil);
-    method ContinueWith(aAction: com.remobjects.elements.system.Action1<Task1<T>>; aState: Object := nil): Task;
-    method ContinueWith<TR>(aAction: com.remobjects.elements.system.Func2<Task1<T>, TR>; aState: Object := nil): Task1<TR>;
+    method ContinueWith(aAction: Action1<Task1<T>>; aState: Object := nil): Task;
+    method ContinueWith<TR>(aAction: Func2<Task1<T>, TR>; aState: Object := nil): Task1<TR>;
     method run; override;
     property &Result: T read getResult;
   end;
