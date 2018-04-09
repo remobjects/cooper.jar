@@ -22,11 +22,14 @@ type
     class method asIterable<T>(x: array of T): sequence of T; iterator;
     class method fill(a: array of Object; val: Object);
     begin 
+      var ct := if val <> nil then val.getClass().getDeclaredConstructor();
+      if ct <> nil then 
+        ct.setAccessible(true);
       for i: Integer := 0 to length(a) -1 do begin 
         if i = 0 then 
           a[i] := val
         else begin 
-          a[i] := if val = nil then nil else val.getClass().newInstance();
+          a[i] := if ct = nil then nil else ct.newInstance();
         end;
       end;
     end;
