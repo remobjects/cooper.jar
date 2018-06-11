@@ -29,8 +29,8 @@ extension method sequence of T.ToArray<T>: array of T; inline; // must be inline
 extension method sequence of T.ToList<T>: ArrayList<T>; 
 extension method sequence of T.ToDictionary<T, K, V>(aKeyBlock: &Selector<T, K>; aValueBlock: &Selector<K, V>): Hashtable<K, V>;
 
-extension method sequence of T.OrderBy<T, C>(aBlock: &Selector<T, C>): sequence of T; where C is Comparable<T>;
-extension method sequence of T.OrderByDescending<T, C>(aBlock: &Selector<T, C>): sequence of T;  where C is Comparable<T>;
+extension method sequence of T.OrderBy<T, C>(aBlock: &Selector<T, C>): sequence of T; where C is Comparable<C>;
+extension method sequence of T.OrderByDescending<T, C>(aBlock: &Selector<T, C>): sequence of T;  where C is Comparable<C>;
 
 
 extension method sequence of T.Distinct<T>(aComparator: Comparer<T> := nil): sequence of T; 
