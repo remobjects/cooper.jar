@@ -32,9 +32,10 @@ type
         end;
         if ls.IsStopped then Break;
         lcurrTasks.incrementAndGet;
+        var temp := m;
         new Task(->
           begin
-            body(m, ls);
+            body(temp, ls);
             lcurrTasks.decrementAndGet;
             locking levent do
               levent.notifyAll;
@@ -61,9 +62,10 @@ type
         end;
         if ls.IsStopped then Break;
         lcurrTasks.incrementAndGet;
+        var temp := m;
         new Task(->
           begin
-            body(m, ls);
+            body(temp, ls);
             lcurrTasks.decrementAndGet;
             locking levent do
               levent.notifyAll;
@@ -89,9 +91,10 @@ type
         end;
         if ls.IsStopped then Break;
         lcurrTasks.incrementAndGet;
+        var temp := m;
         new Task(->
           begin
-            body(m, ls);
+            body(temp, ls);
             lcurrTasks.decrementAndGet;
             locking levent do
               levent.notifyAll;
