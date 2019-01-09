@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parallel.pas" />
     <Compile Include="Globals.pas" />
     <Compile Include="ArrayUtils.pas" />
     <Compile Include="FutureHelper.pas" />
