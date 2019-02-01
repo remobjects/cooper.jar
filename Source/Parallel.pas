@@ -77,13 +77,13 @@ type
       end;
     end;
 
-    class method ForEach<T>(source: Iterable<T>; body: Action2<T,ParallelLoopState>);
+    class method ForEach<T>(source: Iterable<T>; body: Action3<T,ParallelLoopState, Int64>);
     begin
       var lthreadcnt := Runtime.getRuntime().availableProcessors();
       var lcurrTasks := new AtomicInteger();
       var levent := new Object;
       var ls:= new ParallelLoopState();
-      for m in source do begin
+      for m in source index n do begin
         while lcurrTasks.get >= lthreadcnt do begin
           if ls.IsStopped then Break;
           locking levent do
@@ -92,9 +92,10 @@ type
         if ls.IsStopped then Break;
         lcurrTasks.incrementAndGet;
         var temp := m;
+        var tempi := n;
         new Task(->
           begin
-            body(temp, ls);
+            body(temp, ls, tempi);
             lcurrTasks.decrementAndGet;
             locking levent do
               levent.notifyAll;
