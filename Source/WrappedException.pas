@@ -1,4 +1,4 @@
-﻿namespace com.remobjects.elements.system;
+﻿namespace com.remobjects.elements;
 
 type
   WrappedException = public class(Exception)
@@ -12,6 +12,7 @@ type
     class method Wrap(o: Object): Exception;
     begin 
       if o = nil then exit nil;
+      if o is Exception then exit Exception(o);
       exit new WrappedException(o);
     end;
 
