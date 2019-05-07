@@ -62,6 +62,9 @@
     <Compile Include="DynamicHelpers.pas" />
     <Compile Include="Interfaces.pas" />
     <Compile Include="MicroTasks.cs" />
+    <Compile Include="WrappedException.pas">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Cooper.targets" />
   <PropertyGroup>
