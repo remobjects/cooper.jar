@@ -10,7 +10,41 @@ operator Pow(a, b: Integer): Integer; public;
 type
   AnsiChar = public record mapped to SByte end;
 
+extension method &Class.IsFloat: Boolean;
+extension method &Class.IsIntegerOrFloat: Boolean;
+extension method &Class.IsInteger: Boolean;
+extension method &Class.IsSigned: Boolean;
+
 implementation
+
+extension method &Class.IsFloat: Boolean;
+begin 
+  exit (self = typeOf(nullable Single)) or (self = typeOf(nullable Double));
+end;
+
+extension method &Class.IsInteger: Boolean;
+begin 
+  exit (self = typeOf(nullable SByte)) or (self = typeOf(nullable Int16)) or 
+  (self = typeOf(nullable Int32)) or (self = typeOf(nullable Int64)) or 
+  (self = typeOf(UnsignedByte)) or (self = typeOf(UnsignedShort)) or 
+  (self = typeOf(UnsignedInteger)) or (self = typeOf(UnsignedLong));
+end;
+
+extension method &Class.IsIntegerOrFloat: Boolean;
+begin 
+  exit (self = typeOf(nullable Single)) or (self = typeOf(nullable Double)) or 
+    (self = typeOf(nullable SByte)) or (self = typeOf(nullable Int16)) or 
+    (self = typeOf(nullable Int32)) or (self = typeOf(nullable Int64)) or 
+    (self = typeOf(UnsignedByte)) or (self = typeOf(UnsignedShort)) or 
+    (self = typeOf(UnsignedInteger)) or (self = typeOf(UnsignedLong));
+end;
+
+extension method &Class.IsSigned: Boolean;
+begin 
+  exit (self = typeOf(nullable SByte)) or (self = typeOf(nullable Int16)) or 
+  (self = typeOf(nullable Int32)) or (self = typeOf(nullable Int64));
+end;
+
 
 
 operator Pow(a, b: Double): Double; 
