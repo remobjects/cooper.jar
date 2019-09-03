@@ -15,6 +15,66 @@ extension method &Class.IsIntegerOrFloat: Boolean;
 extension method &Class.IsInteger: Boolean;
 extension method &Class.IsSigned: Boolean;
 
+operator &Add(aLeft, aRight: String): String; public;
+begin 
+  if aLeft = nil then exit aRight;
+  if aRight = nil then exit aLeft;
+  exit aLeft.concat(aRight);
+end;
+
+operator &Add(aLeft: Object; aRight: String): String; public;
+begin 
+  if aLeft = nil then exit aRight.toString();
+  if aRight = nil then exit aLeft.toString();
+  exit aLeft.toString().concat(aRight.toString());
+end;
+
+operator &Add(aLeft: String; aRight: Object): String; public;
+begin 
+  if aLeft = nil then exit aRight.toString();
+  if aRight = nil then exit aLeft.toString();
+  exit aLeft.toString().concat(aRight.toString());
+end;
+
+operator Equal(aLeft, aRight: String): Boolean; public;
+begin 
+  if object(aLeft) = nil then exit Object(aRight) = nil;
+  if aRight = nil then exit false;
+
+  exit aLeft.equals(aRight)
+end;
+
+operator Equal(aLeft: Char; aRight: String): Boolean; public;
+begin 
+  if aRight = nil then exit false;
+
+  exit aLeft.toString().equals(aRight)
+end;
+
+operator Equal(aRight: String; aLeft: Char): Boolean; public;
+begin 
+  if aRight = nil then exit false;
+
+  exit aLeft.toString().equals(aRight)
+end;
+
+
+
+operator NotEqual(aLeft, aRight: String): Boolean; public;
+begin 
+  exit not (aLeft = aRight);
+end;
+
+operator NotEqual(aLeft: Char; aRight: String): Boolean; public;
+begin 
+  exit not (aLeft = aRight);
+end;
+
+operator NotEqual(aRight: String; aLeft: Char): Boolean; public;
+begin 
+  exit not (aLeft = aRight);
+end;
+
 implementation
 
 extension method &Class.IsFloat: Boolean;
