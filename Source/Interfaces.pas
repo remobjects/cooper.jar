@@ -11,6 +11,12 @@ type
     method CompareTo(rhs: T): Integer; mapped to compareTo(rhs);
   end;
 
+  INotifyPropertyChanged = public interface
+    method addPropertyChangeListener(listener: java.beans.PropertyChangeListener);
+    method removePropertyChangeListener(listener: java.beans.PropertyChangeListener);
+    method firePropertyChange(name: String; oldValue: Object; newValue: Object);
+  end;
+
 implementation
 
 end.
