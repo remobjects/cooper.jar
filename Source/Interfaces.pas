@@ -11,6 +11,10 @@ type
     method CompareTo(rhs: T): Integer; mapped to compareTo(rhs);
   end;
 
+  IDisposable = public interface mapped to AutoCloseable
+    method Dispose; mapped to close;
+  end;
+
   INotifyPropertyChanged = public interface
     method addPropertyChangeListener(listener: java.beans.PropertyChangeListener);
     method removePropertyChangeListener(listener: java.beans.PropertyChangeListener);
