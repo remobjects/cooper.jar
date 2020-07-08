@@ -1,4 +1,4 @@
-﻿namespace com.remobjects.elements.system;
+﻿namespace remobjects.elements.system;
 // Note: Since this is the library that *implements* unsigned types, you can't actually use them here.
 interface
 
@@ -12,13 +12,13 @@ type
     const MASK: Int16 = $FF;
     class method ToShort(aValue: SByte): Int16;
   public
-    const 
-      MAX_VALUE: SByte = SByte($FF); 
-      MIN_VALUE: SByte = 0; 
+    const
+      MAX_VALUE: SByte = SByte($FF);
+      MIN_VALUE: SByte = 0;
   public
     constructor(aValue: SByte);
     constructor(aValue: String);
-    
+
     method compareTo(Value: UnsignedByte): Integer;
     method intValue: RemObjects.Oxygene.System.Integer; override;
     method longValue: RemObjects.Oxygene.System.Int64; override;
@@ -27,21 +27,21 @@ type
     method byteValue: RemObjects.Oxygene.System.SByte; override;
     method shortValue: RemObjects.Oxygene.System.SmallInt; override;
 
-    class method unsignedToDouble(aValue: SByte): Double; 
-    class method unsignedToFloat(aValue: SByte): Single; 
-    class method doubleToUnsigned(aValue: Double): SByte; 
-    class method floatToUnsigned(aValue: Single): SByte; 
+    class method unsignedToDouble(aValue: SByte): Double;
+    class method unsignedToFloat(aValue: SByte): Single;
+    class method doubleToUnsigned(aValue: Double): SByte;
+    class method floatToUnsigned(aValue: Single): SByte;
     class method unsignedDivide(aValue, aWith: SByte): SByte;
     class method unsignedRemainder(aValue, aWith: SByte): SByte;
 
     class method parseByte(aValue: String): SByte;
-    class method parseByte(aValue: String; Radix: Int32): SByte;    
+    class method parseByte(aValue: String; Radix: Int32): SByte;
 
     class method valueOf(aValue: SByte): UnsignedByte;
     method equals(aOther: Object): Boolean; override;
     method hashCode: Integer; override;
-    method toString: String; override; 
-    class method toString(aValue: SByte): String; 
+    method toString: String; override;
+    class method toString(aValue: SByte): String;
   end;
 
   UnsignedShort = public sealed class(Number, Comparable<UnsignedShort>)
@@ -50,9 +50,9 @@ type
     const MASK: Integer = $FFFF;
     class method ToInt(aValue: Int16): Integer;
   public
-    const 
-      MAX_VALUE: Int16 = Int16($FFFF); 
-      MIN_VALUE: Int16 = 0; 
+    const
+      MAX_VALUE: Int16 = Int16($FFFF);
+      MIN_VALUE: Int16 = 0;
   public
     constructor(aValue: Int16);
     constructor(aValue: String);
@@ -65,18 +65,18 @@ type
     method byteValue: RemObjects.Oxygene.System.SByte; override;
     method shortValue: RemObjects.Oxygene.System.SmallInt; override;
 
-    class method unsignedToDouble(aValue: Int16): Double; 
-    class method unsignedToFloat(aValue: Int16): Single; 
-    class method doubleToUnsigned(aValue: Double): Int16; 
-    class method floatToUnsigned(aValue: Single): Int16; 
+    class method unsignedToDouble(aValue: Int16): Double;
+    class method unsignedToFloat(aValue: Int16): Single;
+    class method doubleToUnsigned(aValue: Double): Int16;
+    class method floatToUnsigned(aValue: Single): Int16;
     class method unsignedDivide(aValue, aWith: Int16): Int16;
     class method unsignedRemainder(aValue, aWith: Int16): Int16;
 
     class method parseShort(aValue: String): Int16;
-    class method parseShort(aValue: String; Radix: Int32): Int16; 
+    class method parseShort(aValue: String; Radix: Int32): Int16;
 
     class method valueOf(aValue: Int16): UnsignedShort;
-    method toString: String; override; 
+    method toString: String; override;
     method &equals(aOther: Object): Boolean; override;
     method hashCode: Integer; override;
     class method toString(aValue: Int16): String;
@@ -86,11 +86,11 @@ type
   private
     fValue: Int32;
     const MASK: Int64 = $FFFFFFFF;
-    class method ToLong(aValue: Int32): Int64;    
+    class method ToLong(aValue: Int32): Int64;
   public
     const
-      MAX_VALUE: Int32 = Int32($FFFFFFFF); 
-      MIN_VALUE: Int32 = 0; 
+      MAX_VALUE: Int32 = Int32($FFFFFFFF);
+      MIN_VALUE: Int32 = 0;
   public
     constructor(aValue: Int32);
     constructor(aValue: String);
@@ -102,22 +102,22 @@ type
     method byteValue: RemObjects.Oxygene.System.SByte; override;
     method shortValue: RemObjects.Oxygene.System.SmallInt; override;
 
-    class method unsignedToDouble(aValue: Int32): Double; 
-    class method unsignedToFloat(aValue: Int32): Single; 
-    class method doubleToUnsigned(aValue: Double): Int32; 
-    class method floatToUnsigned(aValue: Single): Int32; 
+    class method unsignedToDouble(aValue: Int32): Double;
+    class method unsignedToFloat(aValue: Int32): Single;
+    class method doubleToUnsigned(aValue: Double): Int32;
+    class method floatToUnsigned(aValue: Single): Int32;
     class method unsignedDivide(aValue, aWith: Int32): Int32;
     class method unsignedRemainder(aValue, aWith: Int32): Int32;
 
     class method parseInt(aValue: String): Int32;
-    class method parseInt(aValue: String; Radix: Int32): Int32; 
+    class method parseInt(aValue: String; Radix: Int32): Int32;
 
     class method valueOf(aValue: Int32): UnsignedInteger;
-    method toString: String; override; 
+    method toString: String; override;
     method &equals(aOther: Object): Boolean; override;
     method hashCode: Integer; override;
-    class method toString(aValue: Int32): String; 
-    class method toString(aValue: Int32; Radix: Int32): String; 
+    class method toString(aValue: Int32): String;
+    class method toString(aValue: Int32; Radix: Int32): String;
     class method toBinaryString(aValue: Int32): String;
     class method toHexString(aValue: Int32): String;
     class method toOctalString(aValue: Int32): String;
@@ -128,9 +128,9 @@ type
     fValue: Int64;
     class method UnsignedCompare(X,Y: Int64): Integer;
   public
-    const 
-      MAX_VALUE: Int64 = $FFFFFFFFFFFFFFFF; 
-      MIN_VALUE: Int64 = 0; 
+    const
+      MAX_VALUE: Int64 = $FFFFFFFFFFFFFFFF;
+      MIN_VALUE: Int64 = 0;
   public
     constructor(aValue: Int64);
     constructor(aValue: String);
@@ -142,22 +142,22 @@ type
     method byteValue: RemObjects.Oxygene.System.SByte; override;
     method shortValue: RemObjects.Oxygene.System.SmallInt; override;
 
-    class method unsignedToDouble(aValue: Int64): Double; 
-    class method unsignedToFloat(aValue: Int64): Single; 
-    class method doubleToUnsigned(aValue: Double): Int64; 
-    class method floatToUnsigned(aValue: Single): Int64; 
+    class method unsignedToDouble(aValue: Int64): Double;
+    class method unsignedToFloat(aValue: Int64): Single;
+    class method doubleToUnsigned(aValue: Double): Int64;
+    class method floatToUnsigned(aValue: Single): Int64;
     class method unsignedDivide(aValue, aWith: Int64): Int64;
     class method unsignedRemainder(aValue, aWith: Int64): Int64;
 
     class method parseLong(aValue: String): Int64;
-    class method parseLong(aValue: String; Radix: Int32): Int64; 
+    class method parseLong(aValue: String; Radix: Int32): Int64;
 
     class method valueOf(aValue: Int64): UnsignedLong;
-    method toString: String; override; 
+    method toString: String; override;
     method &equals(aOther: Object): Boolean; override;
     method hashCode: Integer; override;
-    class method toString(aValue: Int64): String; 
-    class method toString(aValue: Int64; Radix: Int32): String; 
+    class method toString(aValue: Int64): String;
+    class method toString(aValue: Int64; Radix: Int32): String;
     class method toBinaryString(aValue: Int64): String;
     class method toHexString(aValue: Int64): String;
     class method toOctalString(aValue: Int64): String;
@@ -180,7 +180,7 @@ end;
 
 class method UnsignedByte.doubleToUnsigned(aValue: Double): SByte;
 begin
-  if aValue > 127.0 then 
+  if aValue > 127.0 then
     exit SByte(Double(aValue) - 256.0)
   else
     exit SByte(aValue);
@@ -188,7 +188,7 @@ end;
 
 class method UnsignedByte.floatToUnsigned(aValue: Single): SByte;
 begin
-  if aValue > Single(127.0) then 
+  if aValue > Single(127.0) then
     exit SByte(Single(aValue) - Single(256.0))
   else
     exit SByte(aValue);
@@ -210,7 +210,7 @@ begin
 end;
 
 class method UnsignedByte.toString(aValue: SByte): String;
-begin  
+begin
   exit Int16.toString(ToShort(aValue));
 end;
 
@@ -314,7 +314,7 @@ end;
 
 class method UnsignedShort.doubleToUnsigned(aValue: Double): Int16;
 begin
-  if aValue > 32767.0 then 
+  if aValue > 32767.0 then
     exit Int16(Double(aValue) - 65536.0)
   else
     exit Int16(aValue);
@@ -322,7 +322,7 @@ end;
 
 class method UnsignedShort.floatToUnsigned(aValue: Single): Int16;
 begin
-  if aValue > Single(32767.0) then 
+  if aValue > Single(32767.0) then
     exit Int16(Single(aValue) - Single(65536.0))
   else
     exit Int16(aValue);
@@ -353,7 +353,7 @@ begin
   if Value = nil then
     raise new NullPointerException;
 
-  exit Int16.compare(fValue + Int16.MIN_VALUE, Value.fValue + Int16.MIN_VALUE); 
+  exit Int16.compare(fValue + Int16.MIN_VALUE, Value.fValue + Int16.MIN_VALUE);
 end;
 
 method UnsignedShort.intValue: RemObjects.Oxygene.System.Integer;
@@ -450,7 +450,7 @@ end;
 
 class method UnsignedInteger.doubleToUnsigned(aValue: Double): Int32;
 begin
-  if aValue > 2147483647.0 then 
+  if aValue > 2147483647.0 then
     exit Int32(Double(aValue) - 4294967296.0)
   else
     exit Int32(aValue);
@@ -458,7 +458,7 @@ end;
 
 class method UnsignedInteger.floatToUnsigned(aValue: Single): Int32;
 begin
-  if aValue > Single(2147483647.0) then 
+  if aValue > Single(2147483647.0) then
     exit Int32(Single(aValue) - Single(4294967296.0))
   else
     exit Int32(aValue);
@@ -604,7 +604,7 @@ end;
 
 class method UnsignedLong.doubleToUnsigned(aValue: Double): Int64;
 begin
-  if aValue > 9223372036854775807.0 then 
+  if aValue > 9223372036854775807.0 then
     exit Int64(Double(aValue) - 18446744073709551616.0)
   else
     exit Int64(aValue);
@@ -612,7 +612,7 @@ end;
 
 class method UnsignedLong.floatToUnsigned(aValue: Single): Int64;
 begin
-  if aValue > Single(9223372036854775807.0) then 
+  if aValue > Single(9223372036854775807.0) then
     exit Int64(Single(aValue) - Single(18446744073709551616.0))
   else
     exit Int64(aValue);
@@ -650,7 +650,7 @@ begin
   var pos: Int32 := buf.length;
   while true do begin
     var reminder := unsignedRemainder(aValue, Radix);
-    aValue := unsignedDivide(aValue, Radix);  
+    aValue := unsignedDivide(aValue, Radix);
     dec(pos);
     buf[pos] := Character.forDigit(reminder, Radix);
     if aValue = 0 then
@@ -707,7 +707,7 @@ class method UnsignedLong.unsignedDivide(aValue: Int64; aWith: Int64): Int64;
 begin
   if aWith < 0 then
     exit if UnsignedCompare(aValue, aWith) < 0 then 0 else 1;
-  
+
   if aValue >= 0 then
     exit aValue div aWith;
 

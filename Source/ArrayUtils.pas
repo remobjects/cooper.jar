@@ -1,4 +1,4 @@
-﻿namespace com.remobjects.elements;
+﻿namespace remobjects.elements;
 
 interface
 
@@ -13,22 +13,22 @@ type
     class method asIterable(x: array of Integer): sequence of nullable Integer;iterator;
     class method asIterable(x: array of Int64): sequence of nullable Int64;iterator;
     class method asIterable(x: array of Int16): sequence of nullable Int16;iterator;
-    
-    class method asIterableUnsigned(x: array of SByte): sequence of com.remobjects.elements.system.UnsignedByte;iterator;
-    class method asIterableUnsigned(x: array of Integer): sequence of com.remObjects.elements.system.UnsignedInteger;iterator;
-    class method asIterableUnsigned(x: array of Int64): sequence of com.remObjects.elements.system.UnsignedLong;iterator;
-    class method asIterableUnsigned(x: array of Int16): sequence of com.remObjects.elements.system.UnsignedShort; iterator;
-    
+
+    class method asIterableUnsigned(x: array of SByte): sequence of remobjects.elements.system.UnsignedByte;iterator;
+    class method asIterableUnsigned(x: array of Integer): sequence of remobjects.elements.system.UnsignedInteger;iterator;
+    class method asIterableUnsigned(x: array of Int64): sequence of remobjects.elements.system.UnsignedLong;iterator;
+    class method asIterableUnsigned(x: array of Int16): sequence of remobjects.elements.system.UnsignedShort; iterator;
+
     class method asIterable<T>(x: array of T): sequence of T; iterator;
     class method fill(a: array of Object; val: Object);
-    begin 
+    begin
       var ct := if val <> nil then val.getClass().getDeclaredConstructor();
-      if ct <> nil then 
+      if ct <> nil then
         ct.setAccessible(true);
-      for i: Integer := 0 to length(a) -1 do begin 
-        if i = 0 then 
+      for i: Integer := 0 to length(a) -1 do begin
+        if i = 0 then
           a[i] := val
-        else begin 
+        else begin
           a[i] := if ct = nil then nil else ct.newInstance();
         end;
       end;
@@ -91,30 +91,30 @@ begin
     yield x[i];
 end;
 
-class method ArrayUtils.asIterableUnsigned(x: array of SByte): sequence of com.remobjects.elements.system.UnsignedByte;
+class method ArrayUtils.asIterableUnsigned(x: array of SByte): sequence of remobjects.elements.system.UnsignedByte;
 begin
   for i: Integer := 0 to length(x) -1 do
-    yield new com.remobjects.elements.system.UnsignedByte(x[i]);
+    yield new remobjects.elements.system.UnsignedByte(x[i]);
 end;
 
-class method ArrayUtils.asIterableUnsigned(x: array of Integer): sequence of com.remObjects.elements.system.UnsignedInteger;
+class method ArrayUtils.asIterableUnsigned(x: array of Integer): sequence of remobjects.elements.system.UnsignedInteger;
 begin
   for i: Integer := 0 to length(x) -1 do
-    yield new com.remobjects.elements.system.UnsignedInteger(x[i]);
+    yield new remobjects.elements.system.UnsignedInteger(x[i]);
 end;
 
-class method ArrayUtils.asIterableUnsigned(x: array of Int64): sequence of com.remObjects.elements.system.UnsignedLong;
+class method ArrayUtils.asIterableUnsigned(x: array of Int64): sequence of remobjects.elements.system.UnsignedLong;
 begin
   for i: Integer := 0 to length(x) -1 do
-    yield new com.remobjects.elements.system.UnsignedLong(x[i]);
+    yield new remobjects.elements.system.UnsignedLong(x[i]);
 end;
 
-class method ArrayUtils.asIterableUnsigned(x: array of Int16): sequence of com.remObjects.elements.system.UnsignedShort;
+class method ArrayUtils.asIterableUnsigned(x: array of Int16): sequence of remobjects.elements.system.UnsignedShort;
 begin
   for i: Integer := 0 to length(x) -1 do
-    yield new com.remobjects.elements.system.UnsignedShort(x[i]);
+    yield new remobjects.elements.system.UnsignedShort(x[i]);
 end;
 
-    
+
 
 end.

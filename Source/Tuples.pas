@@ -1,4 +1,4 @@
-﻿namespace com.remobjects.elements.system;
+﻿namespace remobjects.elements.system;
 
 interface
 
@@ -32,7 +32,7 @@ type
     method hashCode: Integer; override;
     method &equals(arg1: Object): Boolean; override;
   end;
- 
+
   Tuple4<T1, T2, T3, T4> = public class
   public
     constructor(aItem1: T1; aItem2: T2; aItem3: T3; aItem4: T4);
@@ -43,7 +43,7 @@ type
     method hashCode: Integer; override;
     method &equals(arg1: Object): Boolean; override;
   end;
- 
+
   Tuple5<T1, T2, T3, T4, T5> = public class
   public
     constructor(aItem1: T1; aItem2: T2; aItem3: T3; aItem4: T4; aItem5: T5);
@@ -100,7 +100,7 @@ type
 
   Tuple = public static class
   assembly
-    class method R3(i: Integer): Integer; 
+    class method R3(i: Integer): Integer;
   public
      class method &New<T1>(aItem1: T1): Tuple1<T1>;
      class method &New<T1, T2>(aItem1: T1; aItem2: T2): Tuple2<T1, T2>;
@@ -111,8 +111,8 @@ type
      class method &New<T1, T2, T3, T4, T5, T6, T7>(aItem1: T1; aItem2: T2; aItem3: T3;  aItem4: T4; aItem5: T5; aItem6: T6; aItem7: T7): Tuple7<T1, T2, T3, T4, T5, T6, T7>;
      class method &New<T1, T2, T3, T4, T5, T6, T7, T8>(aItem1: T1; aItem2: T2; aItem3: T3;  aItem4: T4; aItem5: T5; aItem6: T6; aItem7: T7; aItem8: T8): Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>;
   end;
- 
-  
+
+
 implementation
 
 
@@ -142,8 +142,8 @@ end;
 method Tuple2<T1, T2>.hashCode: Integer;
 begin
   result := 0;
-  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode; 
-  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode; 
+  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode;
+  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode;
 end;
 
 method Tuple2<T1, T2>.&equals(arg1: Object): Boolean;
@@ -163,9 +163,9 @@ end;
 method Tuple3<T1, T2, T3>.hashCode: Integer;
 begin
   result := 0;
-  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode; 
-  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode; 
-  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode; 
+  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode;
+  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode;
+  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode;
 end;
 
 method Tuple3<T1, T2, T3>.&equals(arg1: Object): Boolean;
@@ -187,10 +187,10 @@ end;
 method Tuple4<T1, T2, T3, T4>.hashCode: Integer;
 begin
   result := 0;
-  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode; 
-  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode; 
-  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode; 
-  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode; 
+  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode;
+  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode;
+  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode;
+  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode;
 end;
 
 method Tuple4<T1, T2, T3, T4>.&equals(arg1: Object): Boolean;
@@ -211,11 +211,11 @@ end;
 method Tuple5<T1, T2, T3, T4, T5>.hashCode: Integer;
 begin
   result := 0;
-  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode; 
-  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode; 
-  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode; 
-  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode; 
-  if Item5 <> nil then result := Tuple.R3(result) xor Item5.hashCode; 
+  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode;
+  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode;
+  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode;
+  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode;
+  if Item5 <> nil then result := Tuple.R3(result) xor Item5.hashCode;
 end;
 
 method Tuple5<T1, T2, T3, T4, T5>.&equals(arg1: Object): Boolean;
@@ -237,12 +237,12 @@ end;
 method Tuple6<T1, T2, T3, T4, T5, T6>.hashCode: Integer;
 begin
   result := 0;
-  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode; 
-  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode; 
-  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode; 
-  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode; 
-  if Item5 <> nil then result := Tuple.R3(result) xor Item5.hashCode; 
-  if Item6 <> nil then result := Tuple.R3(result) xor Item6.hashCode; 
+  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode;
+  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode;
+  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode;
+  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode;
+  if Item5 <> nil then result := Tuple.R3(result) xor Item5.hashCode;
+  if Item6 <> nil then result := Tuple.R3(result) xor Item6.hashCode;
 end;
 
 method Tuple6<T1, T2, T3, T4, T5, T6>.&equals(arg1: Object): Boolean;
@@ -267,13 +267,13 @@ end;
 method Tuple7<T1, T2, T3, T4, T5, T6, T7>.hashCode: Integer;
 begin
   result := 0;
-  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode; 
-  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode; 
-  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode; 
-  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode; 
-  if Item5 <> nil then result := Tuple.R3(result) xor Item5.hashCode; 
-  if Item6 <> nil then result := Tuple.R3(result) xor Item6.hashCode; 
-  if Item7 <> nil then result := Tuple.R3(result) xor Item7.hashCode; 
+  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode;
+  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode;
+  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode;
+  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode;
+  if Item5 <> nil then result := Tuple.R3(result) xor Item5.hashCode;
+  if Item6 <> nil then result := Tuple.R3(result) xor Item6.hashCode;
+  if Item7 <> nil then result := Tuple.R3(result) xor Item7.hashCode;
 end;
 
 method Tuple7<T1, T2, T3, T4, T5, T6, T7>.&equals(arg1: Object): Boolean;
@@ -298,14 +298,14 @@ end;
 method Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>.hashCode: Integer;
 begin
   result := 0;
-  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode; 
-  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode; 
-  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode; 
-  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode; 
-  if Item5 <> nil then result := Tuple.R3(result) xor Item5.hashCode; 
-  if Item6 <> nil then result := Tuple.R3(result) xor Item6.hashCode; 
-  if Item7 <> nil then result := Tuple.R3(result) xor Item7.hashCode; 
-  if Item8 <> nil then result := Tuple.R3(result) xor Item8.hashCode; 
+  if Item1 <> nil then result := Tuple.R3(result) xor Item1.hashCode;
+  if Item2 <> nil then result := Tuple.R3(result) xor Item2.hashCode;
+  if Item3 <> nil then result := Tuple.R3(result) xor Item3.hashCode;
+  if Item4 <> nil then result := Tuple.R3(result) xor Item4.hashCode;
+  if Item5 <> nil then result := Tuple.R3(result) xor Item5.hashCode;
+  if Item6 <> nil then result := Tuple.R3(result) xor Item6.hashCode;
+  if Item7 <> nil then result := Tuple.R3(result) xor Item7.hashCode;
+  if Item8 <> nil then result := Tuple.R3(result) xor Item8.hashCode;
 end;
 
 method Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>.&equals(arg1: Object): Boolean;

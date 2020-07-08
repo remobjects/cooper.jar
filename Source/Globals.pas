@@ -1,6 +1,8 @@
-﻿namespace com.remobjects.elements.system;
+﻿namespace remobjects.elements.system;
 
 interface
+
+[assembly:NamespaceAlias('com.remobjects.elements.system', ['remobjects.elements.system'])]
 
 {$G+}
 operator Pow(a, b: Double): Double; public;

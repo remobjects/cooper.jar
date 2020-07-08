@@ -1,16 +1,16 @@
-﻿namespace com.remobjects.elements;
+﻿namespace remobjects.elements;
 
 type
   WrappedException = public class(Exception)
   public
     constructor(aObj: Object);
-    begin 
+    begin
       inherited constructor(aObj.toString);
       Object := aObj;
     end;
 
     class method Wrap(o: Object): Exception;
-    begin 
+    begin
       if o = nil then exit nil;
       if o is Exception then exit Exception(o);
       exit new WrappedException(o);

@@ -1,4 +1,4 @@
-﻿namespace com.remobjects.elements.system;
+﻿namespace remobjects.elements.system;
 
 interface
 uses
@@ -11,19 +11,19 @@ type
   // Action = java.lang.Runnable;
   // Func<T> = java.util.concurrent.Callable<T>
   FutureHelper = public static class
-  public 
-    class method IsDone<T>(aFuture: Task1<T>): Boolean; 
-    class method Execute<T>(aFuture: Callable<T>): Task1<T>; 
-    class method ExecuteAsync<T>(aMethod: Callable<T>; aWantResult: Boolean): Task1<T>; 
-    class method IsDone(aFuture: Task): Boolean; 
-    class method Execute(aMethod: Runnable): Task; 
-    class method ExecuteAsync(aMethod:  Runnable; aWantResult: Boolean): Task; 
+  public
+    class method IsDone<T>(aFuture: Task1<T>): Boolean;
+    class method Execute<T>(aFuture: Callable<T>): Task1<T>;
+    class method ExecuteAsync<T>(aMethod: Callable<T>; aWantResult: Boolean): Task1<T>;
+    class method IsDone(aFuture: Task): Boolean;
+    class method Execute(aMethod: Runnable): Task;
+    class method ExecuteAsync(aMethod:  Runnable; aWantResult: Boolean): Task;
   end;
 
   NonThreadedTask = public class(Task)
   private
   public
-    method Start(aScheduler: Executor); override; 
+    method Start(aScheduler: Executor); override;
     method Wait(aTimeoutMSec: Integer): Boolean; override;
     method Wait; override;
   end;

@@ -1,4 +1,4 @@
-﻿namespace com.remobjects.elements.system;
+﻿namespace remobjects.elements.system;
 
 uses
   java.util,

@@ -1,4 +1,4 @@
-﻿namespace com.remobjects.elements.system;
+﻿namespace remobjects.elements.system;
 
 interface
 
@@ -12,19 +12,19 @@ type
   assembly
     fState: TaskState;
     fException: Throwable;
-    fAsyncState: Object; 
+    fAsyncState: Object;
     fDelegate: Object; // callable<T>; runnable
     fDoneHandlers: Object; // nil, arraylist or task
     fLock: Object := new Object;
-    method Done(ex: Throwable); 
+    method Done(ex: Throwable);
     method AddOrRunContinueWith(aTask: Task);
     constructor(aDelegate: Object; aState: Object);
   public
     method run; virtual;
     constructor(aIn: Runnable; aState: Object := nil);
 
-    method ContinueWith(aAction: com.remobjects.elements.system.Action1<Task>; aState: Object := nil): Task;
-    method ContinueWith<T>(aAction: com.remobjects.elements.system.Func2<Task, T>; aState: Object := nil): Task1<T>;
+    method ContinueWith(aAction: remobjects.elements.system.Action1<Task>; aState: Object := nil): Task;
+    method ContinueWith<T>(aAction: remobjects.elements.system.Func2<Task, T>; aState: Object := nil): Task1<T>;
 
     class method Run(aIn: Runnable): Task;
     class method Run<T>(aIn: Callable<T>): Task1<T>;
@@ -32,7 +32,7 @@ type
     property Exception: Throwable read fException;
     property AsyncState: Object read fAsyncState;
     property IsFaulted: Boolean read fException <> nil;
-    property IsCompleted: Boolean read fState = TaskState.Done; 
+    property IsCompleted: Boolean read fState = TaskState.Done;
     method &Await(aCompletion: IAwaitCompletion): Boolean; // true = yield; false = long done
 
     {$HIDE W38}
@@ -59,9 +59,9 @@ type
     method run; override;
     property &Result: T read getResult;
   end;
-  
+
   TaskCompletionSource<T> = public class
-  private 
+  private
     fTask: Task1<T>;
   public
     constructor(aState: Object := nil);
@@ -163,7 +163,7 @@ begin
   end;
 end;
 
-method Task.ContinueWith(aAction: com.remobjects.elements.system.Action1<Task>; aState: Object): Task;
+method Task.ContinueWith(aAction: remobjects.elements.system.Action1<Task>; aState: Object): Task;
 begin
   result := new Task(-> aAction(self), aState);
   result.fState := TaskState.Queued;
@@ -171,7 +171,7 @@ begin
   AddOrRunContinueWith(result);
 end;
 
-method Task.ContinueWith<T>(aAction: com.remobjects.elements.system.Func2<Task,T>; aState: Object): Task1<T>;
+method Task.ContinueWith<T>(aAction: remobjects.elements.system.Func2<Task,T>; aState: Object): Task1<T>;
 begin
   var r: Callable<T> := -> aAction(self);
   result := new Task1(r, aState);
@@ -251,7 +251,7 @@ end;
 method Task1<T>.getResult: T;
 begin
   Wait();
-  if fException <> nil then 
+  if fException <> nil then
     raise fException;
   exit fResult;
 end;
@@ -297,7 +297,7 @@ end;
 constructor TaskCompletionSource<T>(aState: Object);
 begin
   fTask := new TaskCompletionSourceTask<T>(Object(nil), aState);
-  fTask.fState := TaskState.Started; 
+  fTask.fState := TaskState.Started;
 end;
 
 method TaskCompletionSource<T>.SetException(ex: Throwable);
@@ -327,7 +327,7 @@ begin
   if tc = nil then begin
     ContinueWith(a -> aCompletion.moveNext(a), nil);
   end else begin
-    ContinueWith(a -> begin 
+    ContinueWith(a -> begin
       ThreadSyncHelper.SyncBack(tc, -> aCompletion(a));
     end);
   end;
