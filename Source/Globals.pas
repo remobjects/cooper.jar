@@ -3,6 +3,7 @@
 interface
 
 [assembly:NamespaceAlias('com.remobjects.elements.system', ['remobjects.elements.system'])]
+[assembly:NamespaceAlias('com.remobjects.elements.system.linq', ['remobjects.elements.system.linq'])]
 
 {$G+}
 operator Pow(a, b: Double): Double; public;
