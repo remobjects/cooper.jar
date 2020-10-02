@@ -2,6 +2,8 @@
 
 interface
 
+[assembly:NamespaceAlias('com.remobjects.oxygene.system', ['remobjects.elements.system'])]
+[assembly:NamespaceAlias('com.remobjects.oxygene.system.linq', ['remobjects.elements.system.linq'])]
 [assembly:NamespaceAlias('com.remobjects.elements.system', ['remobjects.elements.system'])]
 [assembly:NamespaceAlias('com.remobjects.elements.system.linq', ['remobjects.elements.system.linq'])]
 
