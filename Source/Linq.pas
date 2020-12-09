@@ -1,4 +1,4 @@
-﻿namespace remobjects.elements.linq;
+﻿namespace Remobjects.Elements.Linq;
 
 interface
 uses

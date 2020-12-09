@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 #endif
 
-namespace remobjects.elements.microtasks
+namespace Remobjects.Elements.MicroTasks
 {
 	/// <summary>
 	/// Result of a (void) method, by default this implies "completed synchronously"

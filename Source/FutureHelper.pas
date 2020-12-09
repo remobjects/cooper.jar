@@ -1,4 +1,4 @@
-﻿namespace remobjects.elements.system;
+﻿namespace Remobjects.Elements.System;
 
 interface
 uses
