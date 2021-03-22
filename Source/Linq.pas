@@ -1,4 +1,4 @@
-﻿namespace Remobjects.Elements.Linq;
+﻿namespace RemObjects.Elements.Linq;
 
 interface
 uses

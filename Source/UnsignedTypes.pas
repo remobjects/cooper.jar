@@ -1,4 +1,4 @@
-﻿namespace Remobjects.Elements.System;
+﻿namespace RemObjects.Elements.System;
 // Note: Since this is the library that *implements* unsigned types, you can't actually use them here.
 interface
 
