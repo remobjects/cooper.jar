@@ -6,8 +6,8 @@
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <AllowLegacyCreate>False</AllowLegacyCreate>
     <Name>cooper</Name>
-    <RootNamespace>com.remobjects.elements.system</RootNamespace>
-    <ProjectGuid>{82e8a52b-61cc-4df3-bed2-647bb69afe9b}</ProjectGuid>
+    <RootNamespace>RemObjects.Elements.System</RootNamespace>
+    <ProjectGuid>{82E8A52B-61CC-4DF3-BED2-647BB69AFE9B}</ProjectGuid>
     <AssemblyName>cooper</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -62,9 +62,8 @@
     <Compile Include="DynamicHelpers.pas" />
     <Compile Include="Interfaces.pas" />
     <Compile Include="MicroTasks.cs" />
-    <Compile Include="WrappedException.pas">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="WrappedException.pas" />
+    <Compile Include="Index.pas" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Cooper.targets" />
   <PropertyGroup>
