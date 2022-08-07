@@ -1,4 +1,4 @@
-﻿namespace remobjects.elements.system;
+﻿namespace Remobjects.Elements.System;
 
 type
   &Index = public record(IEquatable<&Index>)
@@ -8,14 +8,14 @@ type
 	class property &End: &Index read new &Index(not 0);
 
 	property Value: Integer read
-	begin
-	  if fValue < 0 then begin
-		exit not fValue;
-	  end
-	  else begin
-		exit fValue;
+	  begin
+		if fValue < 0 then begin
+		  exit not fValue;
+		end
+		else begin
+		  exit fValue;
+		end;
 	  end;
-	end;
 
 	property IsFromEnd: Boolean read fValue < 0;
 
@@ -79,23 +79,23 @@ type
 	  if IsFromEnd then begin
 		exit ToStringFromEnd();
 	  end;
-	  exit Int32(Value).toString();
+	  exit Int32(Value).toString;
 	end;
 
   private
 
 	// The following private constructors mainly created for perf reason to avoid the checks
-	constructor(aValue: Integer); private;
+	constructor(aValue: Integer);
 	begin
 	  fValue := aValue;
 	end;
 
-	method ToStringFromEnd: String; private;
+	method ToStringFromEnd: String;
 	begin
-	  exit #94 + Value.toString();
+	  exit #94 + Value.toString;
 	end;
 
-	var fValue: Integer; private;
+	var fValue: Integer;
   end;
 
 end.
