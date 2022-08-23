@@ -64,6 +64,7 @@
     <Compile Include="MicroTasks.cs" />
     <Compile Include="WrappedException.pas" />
     <Compile Include="Index.pas" />
+    <Compile Include="String.pas" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Cooper.targets" />
   <PropertyGroup>
