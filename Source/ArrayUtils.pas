@@ -36,10 +36,7 @@ type
 
     class method getSubArray<T>(val: array of T; aStart, aLength: Integer): array of T;
     begin
-      result := new T[aLength];
-      for i := 0 to aLength-1 do
-        result[i] := val[i+aStart];
-      raise new UnsupportedOperationException("ArrayUtils.getSubArray is not implemented yet.");
+      result := java.util.Arrays.copyOfRange(val, aStart, aStart+aLength);
     end;
 
     class method getSubArray<T>(val: array of T; aRange: Range): array of T;
