@@ -44,6 +44,7 @@ type
       var lLength := length(val);
       var lStart := aRange.fStart.GetOffset(lLength);
       var lEnd := aRange.fEnd.GetOffset(lLength);
+      result := getSubArray(val, lStart, lEnd-lStart);
     end;
 
   end;
