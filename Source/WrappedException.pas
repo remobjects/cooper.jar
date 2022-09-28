@@ -1,4 +1,4 @@
-﻿namespace RemObjects.Elements;
+﻿namespace RemObjects.Elements.System;
 
 type
   WrappedException = public class(Exception)
