@@ -22,7 +22,10 @@ extension method sequence of T.Concat<T>(aSecond: sequence of T): sequence of T;
 extension method sequence of T.Reverse<T>: sequence of T;
 extension method sequence of T.Cast<T, U>: sequence of U; iterator;
 
+extension method sequence of T.First<T>: T;
+extension method sequence of T.First<T>(aBlock: Predicate<T>): T;
 extension method sequence of T.FirstOrDefault<T>: T;
+extension method sequence of T.FirstOrDefault<T>(aBlock: Predicate<T>): T;
 extension method sequence of T.Count<T>: Integer;
 extension method sequence of T.Any<T>: Boolean;
 
@@ -129,12 +132,34 @@ begin
   for each el in self do yield el as U;
 end;
 
+extension method sequence of T.First<T>: T;
+begin
+  var lItem := &iterator;
+  if lItem.hasNext then
+    exit lItem.next;
+  raise new Exception("Sequene is empty.");
+end;
+
+extension method sequence of T.First<T>(aBlock: Predicate<T>): T;
+begin
+  for each el in self do
+    if aBlock(el) then
+      exit el;
+  raise new Exception("Sequene is empty.");
+end;
+
 extension method sequence of T.FirstOrDefault<T>: T;
 begin
   var lItem := &iterator;
   if lItem.hasNext then
     exit lItem.next;
-  exit nil;
+end;
+
+extension method sequence of T.FirstOrDefault<T>(aBlock: Predicate<T>): T;
+begin
+  for each el in self do
+    if aBlock(el) then
+      exit el;
 end;
 
 extension method sequence of T.Any<T>: Boolean;
@@ -148,7 +173,7 @@ begin
   if self is List then
     exit List(self).size();
   result := 0;
-  for each el in self do
+  for each in self do
     inc(result);
 end;
 
