@@ -19,6 +19,7 @@ type
     method Done(ex: Throwable);
     method AddOrRunContinueWith(aTask: Task);
     constructor(aDelegate: Object; aState: Object);
+    constructor; empty;
   public
     method run; virtual;
     constructor(aIn: Runnable; aState: Object := nil);
@@ -45,12 +46,20 @@ type
     class constructor;
     class property Threadpool: ExecutorService; readonly;
     class property ThreadSyncHelper: IThreadSyncHelper;
+
+
+    class property CompletedTask: Task read new Task(fState := TaskState.Done); lazy;
+    class method FromResult<T>(x: T): Task1<T>;
+    begin
+      exit new Task1<T>(fState := TaskState.Done, fResult := x);
+    end;
   end;
 
   Task1<T> = public class(Task)
   assembly
     fResult: T;
     method getResult: T;
+    constructor; empty;
     constructor(aDelegate: Object; aState: Object); empty;
   public
     constructor(aIn: Callable<T>; aState: Object := nil);
