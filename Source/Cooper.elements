@@ -9,6 +9,7 @@
     <RootNamespace>RemObjects.Elements.System</RootNamespace>
     <ProjectGuid>{82E8A52B-61CC-4DF3-BED2-647BB69AFE9B}</ProjectGuid>
     <AssemblyName>cooper</AssemblyName>
+    <DefaultGlobalsToPublic>True</DefaultGlobalsToPublic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Optimize>false</Optimize>
