@@ -16,8 +16,10 @@ type
   end;
 
   INotifyPropertyChanged = public interface
+    {$IF NOT JAVA17UP}
     method addPropertyChangeListener(listener: java.beans.PropertyChangeListener);
     method removePropertyChangeListener(listener: java.beans.PropertyChangeListener);
+    {$ENDIF}
     method firePropertyChange(name: String; oldValue: Object; newValue: Object);
   end;
 
