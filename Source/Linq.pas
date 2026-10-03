@@ -26,6 +26,10 @@ extension method sequence of T.First<T>: T;
 extension method sequence of T.First<T>(aBlock: Predicate<T>): T;
 extension method sequence of T.FirstOrDefault<T>: T;
 extension method sequence of T.FirstOrDefault<T>(aBlock: Predicate<T>): T;
+extension method sequence of T.Last<T>: T;
+extension method sequence of T.Last<T>(aBlock: Predicate<T>): T;
+extension method sequence of T.LastOrDefault<T>: T;
+extension method sequence of T.LastOrDefault<T>(aBlock: Predicate<T>): T;
 extension method sequence of T.Count<T>: Integer;
 extension method sequence of T.Any<T>: Boolean;
 
@@ -160,6 +164,42 @@ begin
   for each el in self do
     if aBlock(el) then
       exit el;
+end;
+
+extension method sequence of T.Last<T>: T;
+begin
+  var lItem := &iterator;
+  if not lItem.hasNext then
+    raise new Exception("Sequene is empty.");
+  repeat
+    result := lItem.next;
+  until not lItem.hasNext;
+end;
+
+extension method sequence of T.Last<T>(aBlock: Predicate<T>): T;
+begin
+  var lFound := false;
+  for each el in self do
+    if aBlock(el) then begin
+      result := el;
+      lFound := true;
+    end;
+  if not lFound then
+    raise new Exception("Sequene is empty.");
+end;
+
+extension method sequence of T.LastOrDefault<T>: T;
+begin
+  var lItem := &iterator;
+  while lItem.hasNext do
+    result := lItem.next;
+end;
+
+extension method sequence of T.LastOrDefault<T>(aBlock: Predicate<T>): T;
+begin
+  for each el in self do
+    if aBlock(el) then
+      result := el;
 end;
 
 extension method sequence of T.Any<T>: Boolean;
