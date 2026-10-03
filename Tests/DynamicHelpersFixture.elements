@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProductVersion>3.5</ProductVersion>
+    <OutputType>Exe</OutputType>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <AllowLegacyCreate>False</AllowLegacyCreate>
+    <Name>DynamicHelpersFixture</Name>
+    <RootNamespace>Cooper.DynamicHelpersFixture</RootNamespace>
+    <ProjectGuid>{44D0B3FD-9C97-40A9-AD1C-4F1BEC0C35D1}</ProjectGuid>
+    <AssemblyName>DynamicHelpersFixture</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;</DefineConstants>
+    <GenerateDebugInfo>True</GenerateDebugInfo>
+    <EnableAsserts>True</EnableAsserts>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release</OutputPath>
+    <GenerateDebugInfo>False</GenerateDebugInfo>
+    <EnableAsserts>False</EnableAsserts>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="rt">
+      <Private>True</Private>
+    </Reference>
+    <ProjectReference Include="..\Source\Cooper.elements">
+      <Project>{82E8A52B-61CC-4DF3-BED2-647BB69AFE9B}</Project>
+      <ProjectFile>..\Source\Cooper.elements</ProjectFile>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.pas" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\RemObjects Software\Elements\RemObjects.Elements.Cooper.targets" />
+</Project>
