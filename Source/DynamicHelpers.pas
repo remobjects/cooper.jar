@@ -218,7 +218,7 @@ type
         end;
         if lPars <> nil then begin
           for j: Integer := 0 to lPars.length -1 do begin
-            if not lPars[j].isAssignableFrom(aArgs[j] as &Class)  then begin
+            if not lPars[j].isAssignableFrom(aArgs[j].Class) then begin
               if lPars[j] = typeOf(nullable SByte) then aArgs[j] := SByte.valueOf(Convert.ToSByte(aArgs[j])) else
                 if lPars[j] = typeOf(UnsignedByte) then aArgs[j] := SByte.valueOf(Convert.ToByte(aArgs[j])) else
                 if lPars[j] = typeOf(nullable Int16) then aArgs[j] := Int16.valueOf(Convert.ToInt16(aArgs[j])) else
