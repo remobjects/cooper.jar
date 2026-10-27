@@ -57,6 +57,11 @@ type
     method TryApplyIndexer(aInstance: Object; aArgs: array of Object): Object;
     begin
       if length(aArgs) = 0 then exit aInstance;
+      with matching lMap := java.util.Map<Object, Object>(aInstance) do begin
+        if length(aArgs) <> 1 then
+          raise new DynamicInvokeException('Map indexer expects one key');
+        exit lMap.get(aArgs[0]);
+      end;
       with matching lInst :=  array of Object(aInstance) do begin
         if (length(aArgs) <> 1) then
           raise new DynamicInvokeException('Cannot access indexer with more than 1 parameter');
@@ -250,7 +255,7 @@ type
       end;
 
       if aName = nil then
-        exit TryApplyIndexer(result, aArgs);
+        exit TryApplyIndexer(aInstance, aArgs);
       var lCL := &Class(aInstance);
       var lStatic := lCL <> nil;
       if not lStatic then lCL := aInstance.Class;
@@ -323,8 +328,15 @@ type
         lDyn.SetMember(aName, aGetFlags, aArgs);
         exit;
       end;
-      if aName = nil then
-        exit TryApplyIndexer(result, aArgs);
+      if aName = nil then begin
+        with matching lMap := java.util.Map<Object, Object>(aInstance) do begin
+          if length(aArgs) <> 2 then
+            raise new DynamicInvokeException('Map indexer assignment expects a key and value');
+          lMap.put(aArgs[0], aArgs[1]);
+          exit nil;
+        end;
+        exit SetMember(aInstance, 'Item', aGetFlags, aArgs);
+      end;
       var lCL := &Class(aInstance);
       var lStatic := lCL <> nil;
       if not lStatic then lCL := aInstance.Class;
