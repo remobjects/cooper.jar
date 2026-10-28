@@ -189,11 +189,13 @@ type
         var lPars := lMeth.getParameterTypes;
         if length(lPars) <> length(aArgs) then continue;
         for j: Integer := 0 to lPars.length -1 do begin
-          if aArgs[j] = nil then
+          if aArgs[j] = nil then begin
             if lPars[j].isPrimitive then begin
               lPars := nil;
               break;
             end;
+            continue;
+          end;
           if lPars[j].isPrimitive then begin
             if lPars[j] = typeOf(Boolean) then
               lPars[j] := typeOf(nullable Boolean) else
@@ -223,6 +225,7 @@ type
         end;
         if lPars <> nil then begin
           for j: Integer := 0 to lPars.length -1 do begin
+            if aArgs[j] = nil then continue;
             if not lPars[j].isAssignableFrom(aArgs[j].Class) then begin
               if lPars[j] = typeOf(nullable SByte) then aArgs[j] := SByte.valueOf(Convert.ToSByte(aArgs[j])) else
                 if lPars[j] = typeOf(UnsignedByte) then aArgs[j] := SByte.valueOf(Convert.ToByte(aArgs[j])) else

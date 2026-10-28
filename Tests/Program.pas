@@ -1,4 +1,4 @@
-// Positive guards: dynamic invocation, array indexing, and native map reads/writes.
+// Positive dynamic invocation/indexing guards; null references bind and null primitive arguments are rejected.
 namespace Cooper.DynamicHelpersFixture;
 
 uses
@@ -13,6 +13,17 @@ type
       var lObjectResult := DynamicHelpers.Invoke(lTarget, 'AcceptObject', 0, [new Object]);
       if String(lObjectResult) ≠ 'object' then
         raise new Exception('Object argument did not resolve through DynamicHelpers');
+
+      if String(DynamicHelpers.Invoke(lTarget, 'AcceptObject', 0, [nil])) <> 'missing' then
+        raise new Exception('Null reference argument did not bind');
+      var lRejected := false;
+      try
+        DynamicHelpers.Invoke(lTarget, 'AcceptInteger', 0, [nil]);
+      except
+        on e: DynamicInvokeException do lRejected := true;
+      end;
+      if not lRejected then
+        raise new Exception('Null primitive argument was accepted');
 
       var lNumberResult := DynamicHelpers.Invoke(lTarget, 'AcceptInteger', 0, [Int16(42)]);
       if String(lNumberResult) ≠ 'integer:42' then
